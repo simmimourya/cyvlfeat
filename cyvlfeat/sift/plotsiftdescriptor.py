@@ -181,8 +181,9 @@ def plotsiftdescriptor(d, f=None, magnification=3.0, num_spatial_bins=4, num_ori
             (y_all, magnification * f[k, 3] * a[0] + magnification * f[k, 5] * a[1] + f[k, 1]))
 
     # Plotting
-    plot_figure = plt.figure()
-    to_plot = [list(zip(xall, yall))]
-    lc = mc.LineCollection(to_plot, linewidths=2)
+    plt.figure()
+    to_plot = [list(zip(x_all, y_all))]
+    lc = mc.LineCollection(to_plot, linewidths=0.5)
     plt.gca().add_collection(lc)
     plt.autoscale(enable=True, axis='both', tight=None)
+    plt.show()
