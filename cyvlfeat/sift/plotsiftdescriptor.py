@@ -57,19 +57,19 @@ def plotsiftdescriptor(d, f=None, magnification=3.0, num_spatial_bins=4, num_ori
             # write test for non numeric types in plotsiftdescriptor
             raise ValueError('F must be a numeric type')
 
-        if d.shape[0] != (math.pow(num_spatial_bins, 2) * num_orientation_bins):
+        if d.shape[1] != (math.pow(num_spatial_bins, 2) * num_orientation_bins):
             raise ValueError('The number of rows of D does not match the geometry of the descriptor')
     else:
         raise ValueError('Not enough arguments')
 
-    if f:
-        if f.shape[1] != d.shape[1]:
+    if f is not None:
+        if f.shape[0] != d.shape[0]:
             raise ValueError('D and F have incompatible dimension')
 
-        if f.shape[0] < 2 or f.shape[0] > 6:
+        if f.shape[1] < 2 or f.shape[1] > 6:
             raise ValueError('F must be either empty or have from 2 to six rows.')
 
-        if f.shape[0] == 2:
+        if f.shape[1] == 2:
             # translation only
             f = np.row_stack((f, 10 * np.ones((1, f.shape[1])), 0 * np.zeros(1, f.shape[1])))
 
