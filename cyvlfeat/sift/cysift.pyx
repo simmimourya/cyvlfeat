@@ -143,6 +143,7 @@ cdef int korder(const void *a, const void *b) nogil:
     return 0
 
 
+@cython.boundscheck(False)
 cpdef cy_sift(np.ndarray[float, ndim=2, mode='c'] data, int n_octaves,
               int n_levels, int first_octave, int peak_threshold,
               int edge_threshold, float norm_threshold, int magnification,
