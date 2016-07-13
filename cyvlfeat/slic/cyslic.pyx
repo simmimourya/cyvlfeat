@@ -6,6 +6,7 @@
 
 import numpy as np
 cimport numpy as np
+import ctypes
 cimport cython
 import cython
 from libc.stdio cimport printf
@@ -39,9 +40,11 @@ cpdef cy_slic(np.ndarray[float, ndim=3, mode='c'] image, int region_size,
             printf("vl_slic: min region size:           [%d]\n",
                    min_region_size)
 
-    cdef float[:] segmentation = np.zeros(height, width, dtype=np.float32)
+    # cdef segmentation = np.zeros(height, width, dtype=np.float32)
 
-    vl_slic_segment(&segmentation[0], &image[0,0,0], height, width, n_channels,
+    cdef np.ndarray[float, ndim=2, mode='c'] segmentation = np.empty((height, width), dtype=ctypes.c_float)
+
+    vl_slic_segment(&segmentation[0,0], &image[0, 0, 0], height, width, n_channels,
                     region_size, regularizer, min_region_size)
 
     return np.asarray(segmentation)
