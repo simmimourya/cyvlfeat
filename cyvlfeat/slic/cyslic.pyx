@@ -21,11 +21,8 @@ cpdef cy_slic(np.ndarray[float, ndim=3, mode='c'] image, int region_size,
     cdef:
         vl_size width = image.shape[1]
         vl_size height = image.shape[0]
-        vl_size n_channels
-        vl_uint32 * segmentation
+        vl_size n_channels = image.shape[2]
         int min_region_size = -1
-
-        n_channels = image.shape[2]
 
     if min_region_size < 0:
         #FIXME: Check weather C returns a float here by division.
