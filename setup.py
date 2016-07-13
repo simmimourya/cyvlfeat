@@ -61,6 +61,8 @@ vl_extensions = [
                   [op.join('cyvlfeat', 'kmeans', 'cykmeans.pyx')]),
     gen_extension('cyvlfeat.generic.generic',
                   [op.join('cyvlfeat', 'generic', 'generic.pyx')])
+    gen_extension('cyvlfeat.slic.cyslic',
+                  [op.join('cyvlfeat', 'slic', 'cyslic.pyx')])
 ]
 
 # Grab all the pyx and pxd Cython files for uploading to pypi
