@@ -18,7 +18,7 @@ from cyvlfeat._vl.host cimport *
 cpdef cy_slic(np.ndarray[float, ndim=3, mode='c'] image, int region_size,
               float regularizer, bint verbose):
     # check data types from online reference
-    cpdef:
+    cdef:
         vl_size width = image.shape[1]
         vl_size height = image.shape[0]
         vl_size n_channels
