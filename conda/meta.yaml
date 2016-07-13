@@ -28,6 +28,7 @@ test:
     - cyvlfeat.hog.hog
     - cyvlfeat.kmeans.kmeans
     - cyvlfeat.generic.generic
+    - cyvlfeat.slic.slic
 
   commands:
     - nosetests cyvlfeat -v --cover-package=cyvlfeat
