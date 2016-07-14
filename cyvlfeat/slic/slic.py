@@ -1,5 +1,8 @@
 import numpy as np
-from .cyslic import cy_slic
+from cyvlfeat.slic.cyslic import cy_slic
+from cyvlfeat.test_util import lena
+
+img = lena().astype(np.float32)
 
 
 def slic(image, region_size, regularizer, verbose=False):
@@ -30,8 +33,17 @@ def slic(image, region_size, regularizer, verbose=False):
     if image is None or region_size is None or regularizer is None:
         raise ValueError('A required input is None')
 
-    if image.ndim != 3:
-        raise ValueError('Image should be a 3D array')
+    # Remove last channel
+    if image.ndim == 3 and image.shape[-1] == 1:
+        image = image[..., 0]
+
+    # Validate image size
+    if image.ndim != 2:
+        raise ValueError('Only 2D arrays are supported')
+
+    # if image.ndim != 3:
+    #     raise ValueError('Image should be a 3D array')
+
     image = np.require(image, dtype=np.float32, requirements='C')
 
     if region_size < 1:
@@ -46,5 +58,12 @@ def slic(image, region_size, regularizer, verbose=False):
 
     return result
 
+if __name__ == '__main__':
+    results = slic(img, region_size=10, regularizer=10)
+    print(img)
+    print('/n')
+    print(results)
+    print(results.shape[0])
+    print(results.shape[1])
 
 
