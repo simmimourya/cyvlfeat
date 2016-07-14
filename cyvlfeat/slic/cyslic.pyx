@@ -45,7 +45,10 @@ cpdef cy_slic(np.ndarray[float, ndim=2, mode='c'] image, int region_size,
 
     # cdef segmentation = np.zeros(height, width, dtype=np.float32)
 
+    # cdef np.ndarray[int, ndim=2, mode='c'] segmentation = np.zeros((height, width), dtype=ctypes.c_int)
     cdef np.ndarray[float, ndim=2, mode='c'] segmentation = np.zeros((height, width), dtype=ctypes.c_float)
+
+    # cdef float[:] segmentation = np.zeros(height, width, dtype=np.float32)
 
     vl_slic_segment(&segmentation[0,0], &image[0, 0], height, width, n_channels,
                     region_size, regularizer, min_region_size)

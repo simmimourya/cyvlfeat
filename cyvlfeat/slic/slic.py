@@ -3,7 +3,7 @@ from cyvlfeat.slic.cyslic import cy_slic
 from cyvlfeat.test_util import lena
 
 img = lena().astype(np.float32)
-
+img = img/256
 
 def slic(image, region_size, regularizer, verbose=False):
     r"""
@@ -11,7 +11,7 @@ def slic(image, region_size, regularizer, verbose=False):
 
     Parameters
     ----------
-    image : [H, W, 1] `float32` `ndarray`
+    image : [H, W] `float32` `ndarray`
         A `float32` numpy array (ndarray)
         representing the image to calculate superpixels for.
     region_size : `int`
@@ -49,8 +49,6 @@ def slic(image, region_size, regularizer, verbose=False):
     if region_size < 1:
         raise ValueError('region_size cannot be less than 1')
 
-    # confirm this from Patrick. Less than 0 now. Not accidently changed
-    # from less than 1 to less than 0
     if regularizer < 0:
         raise ValueError('regularizer cannot be less than 0')
 
@@ -59,11 +57,13 @@ def slic(image, region_size, regularizer, verbose=False):
     return result
 
 if __name__ == '__main__':
-    results = slic(img, region_size=10, regularizer=10)
+    # results = slic(img, region_size=10, regularizer=10)
     print(img)
-    print('/n')
-    print(results)
-    print(results.shape[0])
-    print(results.shape[1])
+    # print('/n')
+    # print(results)
+    # print(results.shape[0])
+    # print(results.shape[1])
+    ye = slic(img, region_size=10, regularizer=10, verbose=True)
+    print(ye)
 
 

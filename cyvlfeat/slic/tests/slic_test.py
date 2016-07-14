@@ -8,4 +8,5 @@ img = lena().astype(np.float32)
 
 def test_slic_segment():
     segment = slic(img, region_size=10, regularizer=10)
-    assert segment.shape[0] == 124241
+    assert_allclose(segment[:3], [[4.5, 4.5], [4.5, 5.5], [4.5, 6.5]],
+                    rtol=1e-3)
