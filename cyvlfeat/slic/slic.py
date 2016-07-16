@@ -3,7 +3,7 @@ from cyvlfeat.slic.cyslic import cy_slic
 from cyvlfeat.test_util import lena
 
 img = lena().astype(np.float32)
-img = img/256
+
 
 def slic(image, region_size, regularizer, verbose=False):
     r"""
@@ -57,13 +57,9 @@ def slic(image, region_size, regularizer, verbose=False):
     return result
 
 if __name__ == '__main__':
-    # results = slic(img, region_size=10, regularizer=10)
-    print(img)
-    # print('/n')
-    # print(results)
-    # print(results.shape[0])
-    # print(results.shape[1])
-    ye = slic(img, region_size=10, regularizer=10, verbose=True)
+    re = 10
+    reg = 10.00000
+    ye = slic(img, re, reg, verbose=True)
     print(ye)
 
 
