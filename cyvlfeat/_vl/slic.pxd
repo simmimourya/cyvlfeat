@@ -8,7 +8,7 @@ from cyvlfeat._vl.host cimport vl_size
 from cyvlfeat._vl.host cimport vl_uint32
 
 cdef extern from "vl/slic.h":
-    void vl_slic_segment(float * segmentation,
+    void vl_slic_segment(vl_uint32 * segmentation,
                              float * image,
                              vl_size width,
                              vl_size height,
