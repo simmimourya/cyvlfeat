@@ -56,10 +56,5 @@ def slic(image, region_size, regularizer, verbose=False):
 
     return result
 
-if __name__ == '__main__':
-    re = 10
-    reg = 10.00000
-    ye = slic(img, re, reg, verbose=True)
-    print(ye)
 
 
