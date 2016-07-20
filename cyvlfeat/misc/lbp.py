@@ -1,11 +1,28 @@
 import numpy as np
 from cyvlfeat.misc.cylbp import cy_lbp
-from cyvlfeat.test_util import lena
-
-img = lena().astype(np.float32)
 
 
 def lbp(image, cell_size):
+    r"""
+    Computes the Local Binary Pattern (LBP) features for ``image``.
+    ``image`` is divided in cells of size ``cell_size``.
+    Parameters
+    ----------
+    image : [H, W] or [H, W, 1] `float32` `ndarray`
+        A single channel, greyscale, `float32` numpy array (ndarray).
+    cell_size : ``int``
+        The ``image`` is divided in cells of size ``cell_size``.
+
+    Returns
+    -------
+    histograms: `(h, w, 58)` `float32` `ndarray`
+        `h = FLOOR(height/cell_size)`
+        `w FLOOR(width/cell_size)`
+        ``histograms`` is a three-dimensional array containing one histograms of quantized
+        LBP features per cell. The width of ``histograms`` is ``FLOOR(width/cell_size)``,
+        where ``width`` is the width of the image. The same for the ``height``.
+        The third dimension is 58.
+    """
 
     # check for none
     if image is None or cell_size is None:
@@ -25,13 +42,6 @@ def lbp(image, cell_size):
     # Ensure types are correct before passing to Cython
     image = np.require(image, dtype=np.float32, requirements='C')
 
-    result = cy_lbp(image, cell_size)
+    histograms = cy_lbp(image, cell_size)
 
-    return result
-
-if __name__ == '__main__':
-    ye = cy_lbp(img, cell_size= 200)
-    print(ye)
-    print(ye.shape[0])
-    print(ye.shape[1])
-    print(ye.shape[2])
+    return histograms
