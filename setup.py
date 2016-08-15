@@ -57,6 +57,10 @@ if IS_WIN and IS_CONDA:
     LIBRARY_DIRS.append(conda_bin_dir)
 
 vl_extensions = [
+    gen_extension('cyvlfeat.misc.cykdtreebuild',
+                  [op.join('cyvlfeat', 'misc', 'cykdtreebuild.pyx')]),
+    # gen_extension('cyvlfeat.random.random',
+    #               [op.join('cyvlfeat', 'random', 'random.pyx')]),
     gen_extension('cyvlfeat.sift.cysift',
                   [op.join('cyvlfeat', 'sift', 'cysift.pyx')]),
     gen_extension('cyvlfeat.fisher.cyfisher',
