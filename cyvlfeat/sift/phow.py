@@ -165,7 +165,7 @@ def phow(image, verbose=False, fast=True, sizes=(4, 6, 8, 10), step=2, color='gr
 
             temp_results = dsift(smoothed_image, step=step, size=sizes[si],
                                  bounds=np.array([off, off, image.shape[0] - 1, image.shape[1] - 1]),
-                                fast=fast, float_descriptors=float_descriptors, verbose=verbose)
+                                norm=True, fast=fast, float_descriptors=float_descriptors, verbose=verbose)
 
             temp_all_results.append(temp_results)
 
@@ -173,7 +173,6 @@ def phow(image, verbose=False, fast=True, sizes=(4, 6, 8, 10), step=2, color='gr
             f.append(temp_all_results[i][2*i])
             d.append(temp_all_results[i][2*i+1])
 
-        #TODO: norm = False case. For now Norm is True by default in dsift()
         if color_lower == 'gray':
             contrast = f[0][:, 2]
         elif color_lower == 'opponent':
